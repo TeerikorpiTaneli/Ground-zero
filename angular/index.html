@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Oppimistehtävä 4 - AngularJS</title>
+	<script src="https//code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="https://jashkenas.github.io/underscore/underscore-min.js"></script>
+<script src="https://jashkenas.github.io/backbone/backbone-min.js"></script>
+</head>
+<body>
+	Name:<input id="textInput" type="text"/>
+	Hello <span id="nameDiv"></span>
+
+<!-- Example 4 with no libraries
+<script>
+		var textInputElement = document.getElementById('textInput'),
+			nameDivelement = document.getElementById('nameDiv');
+
+		textInputElement.addEventListener('keyup', function(){
+			var text = textInputElement.value;
+			nameDivelement.innerHTML = text;
+		});
+	</script> -->
+
+<!-- example 5 with jquery	
+	<script>
+      $('#textInput').on('keyup', function(){
+        $('#nameDiv').html($('#textInput').val());
+      });
+    </script>
+-->
+	<script>
+      // Model
+      var model = new Backbone.Model({
+        name: ''
+      });
+      // View
+      model.on('change:name', function(){
+        $('#nameSpan').html(model.get('name'));
+      });
+      // Controller
+      $('#textInput').on('keyup', function(){
+        model.set('name', $('#textInput').val());
+      });
+	</script>
+
+
+</body>
+</html>
